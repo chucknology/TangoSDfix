@@ -19,7 +19,7 @@ Tango has 128GB of **internal primary storage**, and a microSD card receptacle f
 
 Since API level 19 (KitKat) **secondary storage is READ ONLY**, with a few caveats.
 
-*Making use of secondary storage is not straightforward. The Android documentation can be somewhat confusing due to the naming of the API. In most cases, methods with "External" in their name actually address internal storage.*
+*Making use of secondary storage is not always straightforward. The Android documentation can be somewhat confusing due to the naming of the API. In most cases, methods with "External" in their name actually address internal storage.*
 
 A reliable approach is to <a href="https://source.android.com/devices/storage/config-example.html">read the absolute paths from your environment variables</a>:
 
