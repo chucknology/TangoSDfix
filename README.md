@@ -5,7 +5,7 @@
 
 You may have encountered some issues working with microSD card storage, such as not being able to write to it ! These issues are a result of platform changes in API level 19.
 
-This app enables writing to the microSD card.
+This app enables unrestricted writing to the microSD card.
 
 It doesn't require any permissions apart from `SUPERUSER` so you'll need to be rooted to use it.
 
