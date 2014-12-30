@@ -3,11 +3,12 @@
 
 **One-click microSD card write enabler for the Project Tango tablet**
 
-You may have encountered some issues working with microSD card storage, such as not being able to write to it ! 
+You may have encountered some issues working with microSD card storage, such as not being able to write to it ! These issues are a result of platform changes in API level 19.
 
-These issues are a result of platform changes in API level 19. This app enables writing to the microSD card.
+This app enables writing to the microSD card.
 
-You'll need to be rooted to use it.
+It doesn't require any permissions apart from `SUPERUSER` so you'll need to be rooted to use it.
+
 Get the <a href="https://github.com/chucknology/TangoRoot">TangoRoot</a> app if you haven't done so already.
 
 ---
@@ -18,9 +19,9 @@ Tango has 128GB of **internal primary storage**, and a microSD card receptacle f
 
 Since API level 19 (KitKat) **secondary storage is READ ONLY**, with a few caveats.
 
-*Android documentation can be somewhat misleading, thanks to some unintuitively named API's. In most cases, methods with "External" in their name actually address internal storage.*
+*Making use of secondary storage is not straightforward. The Android documentation can be somewhat confusing due to the naming of the API. In most cases, methods with "External" in their name actually address internal storage.*
 
-I find the cleanest approach is to <a href="https://source.android.com/devices/storage/config-example.html">read the absolute paths from your environment variables</a>:
+A reliable approach is to <a href="https://source.android.com/devices/storage/config-example.html">read the absolute paths from your environment variables</a>:
 
 ```
 String primaryStore   = System.getenv("EXTERNAL_STORAGE");  // Tango tablet currently = "/storage/emulated/legacy"
@@ -31,20 +32,22 @@ If you are targeting devices other than the Tango, you should also do this:
 
 ```
 if (secondaryStore != null)
-     secondaryStore = secondaryStore.split(":")[0]; // some devices (e.g. Samsung) return multiple paths, the first is the microSD card
+    secondaryStore = secondaryStore.split(":")[0]; // some devices (e.g. Samsung) return multiple paths, the first is the microSD card
 ```
 
-This tool is a convenience for developers.
+---
+
+This tool is provided as a convenience for developers and people who depend upon legacy software.
 
 You should update production code to use KitKat APIs such as the <a href="https://developer.android.com/guide/topics/providers/document-provider.html">Storage Access Framework.</a>
 
 If your application only needs to store internal data, consider using <a href="https://developer.android.com/reference/android/content/Context.html#getExternalFilesDir%28java.lang.String%29">getExternalFilesDir(String)</a> or <a href="https://developer.android.com/reference/android/content/Context.html#getExternalCacheDir%28%29">getExternalCacheDir()</a>, which require no permissions to read or write.
 
-If you have been affected by this issue, you should read <a href="http://commonsware.com/blog/2014/04/09/storage-situation-removable-storage.html">Mark Murphy's excellent write-up.</a>
+To learn more about these issues, you should read <a href="http://commonsware.com/blog/2014/04/09/storage-situation-removable-storage.html">Mark Murphy's excellent write-up.</a>
 
 ```
 There was never any warranty.
-Trademarks are owned by their owners (!)
+Trademarks are owned by their owners!
 ```
 ![App screenshot 1](/../doc-assets/Tango SD Fix screenshot 1.png?raw=true "App screenshot 1")
 
